@@ -7,11 +7,19 @@ from rest_framework.authentication import TokenAuthentication
 from profilesapi import serializers
 from rest_framework import viewsets 
 from .models import UserProfile, UserProfileManager
+from profilesapi import permissions
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handling creating and updating profiles"""
     serializer_class=serializers.UserProfileSerializer
     queryset=UserProfile.objects.all() 
+
+    authentication_classes=[TokenAuthentication]  
+    """tells the mechanism used to authenticate"""
+
+    permission_classes=[permissions.UpdateOwnProfile]  
+    """tells how user gets permission to do anything"""
 
 
 
