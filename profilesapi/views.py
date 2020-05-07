@@ -8,7 +8,7 @@ from profilesapi import serializers
 from rest_framework import viewsets 
 from .models import UserProfile, UserProfileManager
 from profilesapi import permissions
-
+from rest_framework import filters
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handling creating and updating profiles"""
@@ -20,6 +20,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     permission_classes=[permissions.UpdateOwnProfile]  
     """tells how user gets permission to do anything"""
+
+    filter_backends=[filters.SearchFilter] 
+    search_fields=['name','email']
 
 
 
