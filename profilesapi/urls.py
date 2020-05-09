@@ -6,6 +6,9 @@ router=DefaultRouter()
 router.register('helloview',views.HelloViewSet,basename='helloviewset')
 router.register('profile',views.UserProfileViewSet)   
 """basename not needed if have a queryset"""
+router.register('feed',views.UserProfileFeedViewSet) 
+
+
 
 urlpatterns = [
     path('hello/',views.HelloApiView.as_view()),
